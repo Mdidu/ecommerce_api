@@ -1,0 +1,2 @@
+export const CREATED_ACCOUNT_SUCCESSFULLY = "Created account sucessfully ! An email has been sent to you to validate your account !";
+export const VALIDATE_ACCOUNT_SUCCESSFULLY = "Validate account sucessfully !";

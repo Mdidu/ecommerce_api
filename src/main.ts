@@ -1,6 +1,7 @@
 "use strict";
 
 import express from "express";
+import authRoutes from "./routes/auth";
 
 const server = express();
 
@@ -15,11 +16,9 @@ server.use((req, res, next) => {
 });
 
 // Allows to recover JSON Data in request
-// server.use(express.json({ extended: false }));
+server.use(express.json());
 
-server.use((req, res) => {
-  res.json({ message: 'Votre requête a bien été reçue !' }); 
-});
+server.use("/auth", authRoutes);
 
 server.listen(8080);
 
