@@ -65,16 +65,16 @@ export const deleteProductCategory = async (id: number) => {
   return response;
 }
 
-export const convertProductCategoryDaoInProductCategoryDto = (productDao: ProductCategoryDao): ProductCategoryDto => {
+export const convertProductCategoryDaoInProductCategoryDto = (productCategoryDao: ProductCategoryDao): ProductCategoryDto => {
   return {
-    id: +productDao.id,
-    productCategoryName: productDao.productCategoryName,
+    id: +productCategoryDao.id,
+    productCategoryName: productCategoryDao.productCategoryName,
   }
 }
 
-export const convertProductCategoryDtoInProductCategoryDao = (productDto: ProductCategoryDto): ProductCategoryDao => {
+export const convertProductCategoryDtoInProductCategoryDao = (productCategoryDto: ProductCategoryDto): ProductCategoryDao => {
   return {
-    id: +productDto.id,
-    productCategoryName: productDto.productCategoryName,
+    id: +productCategoryDto.id,
+    productCategoryName: productCategoryDto.productCategoryName,
   }
 }

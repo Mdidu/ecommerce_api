@@ -16,3 +16,4 @@ export const TOKEN_IS_MISSING = "Token is missing !";
 export const ERROR_TOKEN = "Error token !";
 export const INVALID_TOKEN = "Invalid token : ";
 export const UNAUTHORIZED = "Insufficient right !";
+export const CREATED_INVENTORY_FAILED = "Created inventory product failed before created product !";

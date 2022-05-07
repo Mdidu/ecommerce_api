@@ -1,6 +1,6 @@
 export interface ProductInventoryDto {
   id: number;
   quantity: number;
-  createdAt: Date;
-  modifiedAt: Date;
+  createdAt: Date | undefined;
+  modifiedAt: Date | undefined;
 }

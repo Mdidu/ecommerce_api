@@ -1,21 +1,34 @@
+import { ProductInventoryDto } from './../models/dto/ProductInventory.dto';
 import { ProductDto } from './../models/dto/Product.dto';
 import * as express from 'express';
 import * as productService from '../services/product';
-import { UNAUTHORIZED } from '../store/error_messages';
+import { CREATED_INVENTORY_FAILED, UNAUTHORIZED } from '../store/error_messages';
+import * as productInventoryService from '../services/product-inventory';
 
 export const addProduct = async (req: express.Request, res: express.Response) => {  
   const { admin } = req.body.user;
 
   if (!admin) res.status(403).json({message: UNAUTHORIZED});
-//TODO Créer le productInventory before le product
+
   const createdAt = new Date();
+  const productInventoryDto: ProductInventoryDto = {
+    id: -1,
+    quantity: req.body.quantity,
+    createdAt,
+    modifiedAt: undefined
+  }
+  
+  const inventoryId = await productInventoryService.addProductInventory(productInventoryDto);
+
+  if(inventoryId === undefined) return res.status(400).json({message: CREATED_INVENTORY_FAILED});
+
   const productDto: ProductDto = {
     productName: req.body.productName,
     productDescription: req.body.productDescription,
     productPrice: req.body.productPrice,
     createdAt,
     categoryId: req.body.categoryId,
-    inventoryId: req.body.inventoryId,
+    inventoryId: +inventoryId,
     discountId: undefined,
     id: -1
   };

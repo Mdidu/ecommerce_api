@@ -4,6 +4,7 @@ import express from "express";
 import authRoutes from "./routes/auth";
 import productRoutes from "./routes/product";
 import categoryRoutes from "./routes/product-category";
+import inventoryRoutes from "./routes/product-inventory";
 
 const server = express();
 
@@ -23,6 +24,7 @@ server.use(express.json());
 server.use("/auth", authRoutes);
 server.use("/product", productRoutes);
 server.use("/category", categoryRoutes);
+server.use("/inventory", inventoryRoutes);
 
 server.listen(8080);
 
