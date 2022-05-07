@@ -2,6 +2,7 @@
 
 import express from "express";
 import authRoutes from "./routes/auth";
+import productRoutes from "./routes/product";
 
 const server = express();
 
@@ -19,6 +20,7 @@ server.use((req, res, next) => {
 server.use(express.json());
 
 server.use("/auth", authRoutes);
+server.use("/product", productRoutes);
 
 server.listen(8080);
 

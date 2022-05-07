@@ -9,13 +9,9 @@ import { ACCOUNT_ALREADY_VALIDATE, ACCOUNT_NOT_VALIDATE, ACCOUNT_UNKNOWN, CREATE
 import { CREATED_ACCOUNT_SUCCESSFULLY, VALIDATE_ACCOUNT_SUCCESSFULLY } from '../store/success_messages';
 import { QueryResult } from 'pg';
 import { createTokenJWT } from '../utils/jwtGenerator';
+import { ResponseService } from '../type/ResponseService';
 
 let status: Status;
-type ResponseService = {
-  status: Status;
-  data: unknown | undefined;
-  token: string | undefined;
-}
 let response: ResponseService;
 
 export const login = async (userDto: UserDto): Promise<ResponseService> => {
@@ -27,7 +23,7 @@ export const login = async (userDto: UserDto): Promise<ResponseService> => {
 
   const userDao: UserDao = userDto;
   const result =  (await authRepository.login(userDao)).rows[0];
-  const user: UserDao =  {id: result.id, email: result.email, password: result.password, firstName: result.first_name, lastName: result.last_name, phoneNumber: result.phone_number, validate: result.validate, roleId: result.role_id};
+  const user: UserDao =  {id: result.id, email: result.email, password: result.password, firstName: result.first_name, lastName: result.last_name, phoneNumber: result.phone_number, validate: result.validate, roleId: +result.role_id};
   const passwordValid = await bcrypt.compare(userDao.password, user.password);
   
   if(!identifierIsValid(user, passwordValid)) return response;
