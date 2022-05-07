@@ -3,6 +3,7 @@
 import express from "express";
 import authRoutes from "./routes/auth";
 import productRoutes from "./routes/product";
+import categoryRoutes from "./routes/product-category";
 
 const server = express();
 
@@ -21,6 +22,7 @@ server.use(express.json());
 
 server.use("/auth", authRoutes);
 server.use("/product", productRoutes);
+server.use("/category", categoryRoutes);
 
 server.listen(8080);
 

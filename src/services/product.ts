@@ -23,7 +23,7 @@ export const addProduct = async (productDto: ProductDto) => {
     
     return {codeStatus: 201, message: CREATED_SUCESSFULLY, value: productId};
   } catch (error) {
-    if(error instanceof Error) productResponse = { codeStatus: 400, message: error.message, value: undefined}; 
+    if(error instanceof Error) productResponse = { codeStatus: 400, message: error.message}; 
   }
   
   return productResponse;
@@ -45,7 +45,7 @@ export const getOneProduct = async (id: number) => {
     const productDto = convertProductDaoInProductDto(productDao);
     productResponse = {codeStatus: 200, message: DATA_OBTAINED, value: productDto};
   } catch (error) {
-    if(error instanceof Error) productResponse = { codeStatus: 401, message: error.message, value: undefined}; 
+    if(error instanceof Error) productResponse = { codeStatus: 401, message: error.message}; 
   }
 
   return productResponse;

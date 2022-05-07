@@ -47,7 +47,7 @@ export const updateProduct = async (req: express.Request, res: express.Response)
   if (!admin) res.status(403).json({message: UNAUTHORIZED});
 
   const productDto: ProductDto = {
-    id: req.body.id,
+    id: +req.params.id,
     productName: req.body.productName,
     productDescription: req.body.productDescription,
     productPrice: req.body.productPrice,
@@ -70,4 +70,5 @@ export const deleteProduct = async (req: express.Request, res: express.Response)
 
   const { codeStatus, message } = await productService.deleteProduct(id);
 
-  return res.status(codeStatus).json({message});} 
+  return res.status(codeStatus).json({message});
+} 
