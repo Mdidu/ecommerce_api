@@ -1,5 +1,5 @@
 import { Pool } from "pg";
 
-const pool = new Pool();
+const db = new Pool();
 
-module.exports = pool;
+export default db;

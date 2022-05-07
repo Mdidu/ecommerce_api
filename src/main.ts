@@ -1,6 +1,10 @@
 "use strict";
 
 import express from "express";
+import authRoutes from "./routes/auth";
+import productRoutes from "./routes/product";
+import categoryRoutes from "./routes/product-category";
+import inventoryRoutes from "./routes/product-inventory";
 
 const server = express();
 
@@ -15,11 +19,12 @@ server.use((req, res, next) => {
 });
 
 // Allows to recover JSON Data in request
-// server.use(express.json({ extended: false }));
+server.use(express.json());
 
-server.use((req, res) => {
-  res.json({ message: 'Votre requête a bien été reçue !' }); 
-});
+server.use("/auth", authRoutes);
+server.use("/product", productRoutes);
+server.use("/category", categoryRoutes);
+server.use("/inventory", inventoryRoutes);
 
 server.listen(8080);
 
